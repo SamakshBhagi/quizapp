@@ -1,0 +1,33 @@
+{%extends 'landing_page.html'%}
+{%block title%} Your Score {%endblock%}
+{%block content%}
+<style>
+    img{
+        height:400px;
+        width:600px;
+        display:block;
+        padding:1rem;
+        border-radius:15%;
+    }
+
+</style>
+<div class = "user_table">
+<table>
+    <tr>
+        <th>Attempt No.</th>
+        <th>Score</th>    
+    </tr>
+{% for s in scores if s.quizid == quiz.quizid %}	
+    <tr>
+        <td class = 'content'>{{loop.index}}</td>
+        <td class = 'content'>{{ s.score }}</td>
+    </tr>
+{%endfor%}
+
+</table>
+</div>
+<p> You got {{score}}/{{total}} marks.</p>
+<p> Below, see a visual chart.</p>
+<img src="data:image/png;base64,{{ img_data }}" alt="Quiz Score Chart">
+<a href = "{{url_for('authorize.user_dash')}}">Go back to User Dashboard</a>
+{%endblock%}

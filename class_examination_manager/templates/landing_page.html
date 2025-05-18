@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}Quiz Master- 23f3002576{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='mystyles.css') }}">
+</head>
+<body>
+    <div class="header">
+    <h1>Ace your Exams with Quiz Master v1.0!</h1>
+    </div>
+    <div class = "landing-wrap">
+    
+        {% block content %}
+            <form action="{{ url_for('authorize.logger') }}" method="GET">
+                <button type="submit" ><p>LogIn</p></button>
+            </form>
+
+            <form action="{{ url_for('authorize.register') }}" method="GET">
+                <button type="submit" ><p>Register</p></button>
+            </form>
+            
+
+        {% endblock %}
+    </div>
+    <footer>
+        <p>Quiz Master &copy; 23f3002576</p>
+        <p> This website is created for the MAD-1 project in the IIT Madras Diploma Level.</p>
+    </footer>
+</body>
+</html>

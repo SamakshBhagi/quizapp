@@ -1,0 +1,39 @@
+{%extends 'landing_page.html'%}
+{%block title%} Add Quiz Question{%endblock%}
+{%block content%}
+<style>
+    h2, h1{
+        padding:1rem;
+    }
+    select, input{
+        padding:0.3rem;
+        margin:0.6rem;
+    }
+</style>
+<h2>Add Quiz Question</h2>
+<form action="{{ url_for('process.append_question', qz_id=quiz.quizid) }}" method="POST">
+    <div>Question:
+        <input type="text" name="q_text" required>  
+    </div>
+    <div>Option A:
+        <input type="text" name="opt_a" required>
+    </div>
+    <div>Option B:
+        <input type="text" name="opt_b" required>
+    </div>
+    <div>Option C:
+        <input type="text" name="opt_c" required>
+    </div>
+    <div>Option D:
+        <input type="text" name="opt_d" required>
+    </div>
+    <div>Correct Option (A, B, C, D):
+        <input type="text" name="correct_opt" required>
+    </div>
+    
+    <button style='display:block;' type="submit">Add Question</button>
+</form>
+
+<br>
+<a href = '{{url_for("process.view_quizzes", c_id = quiz.chapterid)}}'> Go back </a>
+{%endblock%}

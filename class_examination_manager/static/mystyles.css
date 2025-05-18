@@ -1,0 +1,160 @@
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background-color: #4169f9;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #c96060;
+    border-radius: 25%;
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'helvetica';
+    color:#fafafa;
+    word-spacing: 0.1em;
+}
+
+p{
+    font-size: 18px;
+    padding:1rem;
+}
+
+li{
+    font-size: 17px;
+    padding:1rem;
+}
+
+.landing-wrap > a{
+    padding: 0.5rem;
+}
+
+body{
+    background:linear-gradient(135deg, rgb(66, 164, 197), #0c7fb4);
+}
+
+h1{
+    width: 45vw;
+    border-bottom:2px solid blue ;
+    margin: 10px;
+}
+
+h1,p{
+    padding:10px;
+    transition: 250ms ease;
+}
+
+h2{
+    padding:0.5rem;
+    transition: 240ms;
+}
+h2:hover{
+    transform: rotateX(30deg);
+    transform: rotateY(30deg);
+}
+
+
+footer{
+    height:10vh;
+    background-color:#1C1C1C; 
+    text-align:center;
+    padding: 1em;
+    font-size: 18px;
+    margin-top: 3rem;
+}
+
+
+/* form styling */
+form{
+    display: flex;
+    justify-content: center;
+    color:#1C1C1C;
+}
+
+.form {
+    padding: 20px;
+    background: steelblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    max-width: 400px;  /* zyada wide na ho */
+    min-height: 60vh;  /* kam sekam itna rhe*/
+    justify-content: center;
+}
+
+.form > div {
+    width: 100%;
+    font-size: 18px;
+    text-align: left;
+}
+
+.form input {
+    width: 90%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    color:#1C1C1C;
+}
+
+input{
+    color:black;
+    outline:none;
+    border-radius:5px;
+}
+
+a{
+    text-decoration: none;
+    margin-top: 20px;
+    padding:5px;
+    background-color: steelblue;
+    border-radius: 5px;
+    border: 2px solid #fff;
+}
+
+button{
+    font-size: 16px;
+    text-decoration: none;
+    margin-top: 20px;
+    padding:5px;
+    background-color: steelblue;
+    border-radius: 5px;
+    border: 2px solid #fff;
+    cursor: pointer;
+
+}
+
+option{
+    color:#1C1C1C;
+}   
+
+
+
+/* user table styling */
+.user_table{
+    margin: 10px;
+    padding: 10px;
+    margin: auto;
+}
+
+.user_table>table{
+    padding: 1em;
+}
+
+.user_table>table th{
+    background:blue;
+}
+.user_table>table *{
+    padding: 0.5em;
+    border: 1px solid #1C1C1C;
+    text-align: center;
+}

@@ -1,0 +1,131 @@
+{%extends 'landing_page.html'%}
+{%block title%} Admin Page{%endblock%}
+
+{%block content%}
+<style>
+    p{
+        font-size:18px;
+        padding:2rem;
+    }
+    input,select{
+        color:black;
+        border-radius:5px;
+        outline: none;
+        font-size:17px;
+        margin:0.4rem;
+    }
+    form *{
+        padding:0.5rem;
+    }
+    .margin{
+        margin:3rem;
+    }
+    a,button{
+        margin:0.2rem;
+    }
+</style>
+<h1> Hi, {{user.naam}}! </h1>
+<div class = "user_table">
+<p> Search for a quiz in relevant subject and chapters</p>
+<form method="GET" action="{{url_for('process.dhoondo_quiz')}}">
+    <select name="s_id" required>
+        {% for subject in subjects %}
+            <option value = "{{subject.subjectid}}" required>{{ subject.naam }}</option>
+        {% endfor %}
+    </select>
+    <select name="c_id" required>
+        {% for chapter in chapters %}
+            <option value = '{{chapter.chapterid}}' required> {{ chapter.naam }}</option>
+        {% endfor %}
+    </select>
+    <input type="text" name="ise" value="{{ ise }}">
+    <button type="submit">Search</button>
+</form>
+<p> Search for a user:</p>
+<form action= "{{url_for('process.dhoondo_user')}}">
+    <input type = "text" name = "u_name">
+    <button type="submit">Search</button>
+</form>
+<p> Here's the list of registered users:</p>
+<table>
+    <tr>
+        <th>UniqueCode</th>
+        <th> ID</th>
+        <th> Name</th>
+    </tr>
+    {% for user in users %}
+        <tr>
+            <td>{{user.userid}}</td>
+            <td>{{user.enrollid}}</td>
+            <td>{{user.naam}}</td>
+            {%if user.naam!='admin'%}
+            <td><a href = "{{url_for('process.delete_user', uid = user.userid)}}">Delete</a></td>
+            {%endif%}
+        </tr>
+        {% endfor %}
+</table>
+</div> 
+
+
+<div class="addstuff" style="color:#1C1C1C;">
+    <!-- Add Subject Form -->
+    <h2>Add Subject</h2>
+    <form action="{{ url_for('process.add_subject') }}" method="POST">
+        <label>Subject Name:</label>
+        <input type="text" name="s_name" required>
+        <button type="submit">Add Subject</button>
+    </form>
+
+    <hr>
+
+    <!-- Add Chapter Form -->
+    <h2>Add Chapter</h2>
+    <form action="{{ url_for('process.add_chapter') }}" method="POST">
+        <label>Choose Subject: </label>
+        <select name = 's_id' required>
+        {%for s in subjects%}
+            <option value = "{{s.subjectid}}">{{s.naam}}</option>
+        {%endfor%}
+        </select>
+            <input type="text" name="c_name">
+        <button type="submit">Add Chapter</button>
+    </form>
+    <hr>
+
+<!-- Add Quiz Form -->
+<h2>Add Quiz</h2>
+<form action="{{ url_for('process.add_quiz') }}" method="POST">
+    <label>  Choose Chapter:</label>
+    <select name = 'c_id' required>
+        {%for c in chapters%}
+        <option value ='{{c.chapterid}}'> {{c.subject.naam}} ({{c.naam}}) </option>
+    {%endfor%}
+    </select>
+    <label>Quiz Name:</label>
+    <input type="text" name="q_name">
+    <button type="submit">Add Quiz</button>
+</form>
+<hr>
+
+<!-- display krde -->
+<h2>Existing Quizzes</h2>
+<ul>
+    {% for s in subjects%}
+        <li><b>{{s.naam}}</b> <a href = "{{url_for('process.edit_subject', s_id = s.subjectid)}}">Edit Subject</a> <a href = "{{url_for('process.pop_subject', s_id = s.subjectid)}}" onclick = "return confirm('Are you sure?');">Delete Subject</a></li>
+            <ol start = '1' style= "margin-left:3rem">
+            {%for c in chapters %}
+                {%if c.subjectid == s.subjectid%}
+                    <li>{{c.naam}}:<a  href = "{{url_for('process.edit_chapter', c_id = c.chapterid)}}" >Edit Chapter</a> <a href = "{{url_for('process.pop_chapter', c_id = c.chapterid)}}">Delete Chapter</a>
+                        <a href = "{{url_for('process.view_quizzes', c_id = c.chapterid)}}" style= "background:blue;"> View Quizzes</a>
+                    </li>
+                {%endif%}
+            {%endfor%}
+            </ol>
+    {%endfor%}
+</ul>
+</div>
+<div class = "margin">
+<a href = "{{url_for('authorize.logout' )}}"> Logout</a>
+<a onclick = "return confirm('Are you sure?')" href = "{{url_for('reset')}}"> Reset Database </a>
+</div>
+{%endblock%}

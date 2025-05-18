@@ -1,0 +1,29 @@
+{% extends 'landing_page.html' %}
+{%block title %} Register Page{%endblock %}
+
+{%block content%}
+<form action="{{ url_for('authorize.register') }}" method="POST">
+    <div class="form">
+        <div>
+        <label for="enrollid">Enrollment ID:</label>
+        <input type="text" placeholder ="Eg:205" name = 'enrollid' required>
+        </div>
+        <div>
+            <label for="naam">Name:</label>
+            <input type="text" placeholder ="Your Name" name='naam' required>
+            </div>
+        <div>
+        <label for="pwd" >Set Password:</label>
+        <input type="password" placeholder="Enter password" name = 'pwd' required>
+        </div>
+        
+        <div>
+            <button type="submit" ><p>Register</p></button>
+        </div>
+        
+        <div>
+        Already using the app? <a href = "{{ url_for('authorize.logger')}}">Login</a>
+        </div>
+    </div>
+</form>
+{% endblock %}

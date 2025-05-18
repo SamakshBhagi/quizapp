@@ -1,0 +1,25 @@
+{% extends 'landing_page.html' %}
+{%block title %} Logger Page{%endblock %}
+
+{%block content%}
+<form action="{{ url_for('authorize.logger') }}" method="POST">
+    <div class="form">
+        <div>
+        <label for="enrollid">Enrollment Id:</label>
+        <input type="text" placeholder ="Eg:206" name = 'enrollid' required>
+        </div>
+
+        <div>
+        <label for="pwd" >Password:</label>
+        <input type="password" name = 'pwd' placeholder="Enter password" required>
+        </div>
+        
+        <div><button type="submit" ><p>LogIn</p></button>
+        </div>
+        
+        <div>
+        New to the app? <a href = "{{url_for('authorize.register')}}">Register</a>
+        </div>
+    </div>
+</form>
+{% endblock %}

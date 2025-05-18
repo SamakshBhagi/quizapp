@@ -1,0 +1,25 @@
+{%extends 'landing_page.html'%}
+{%block title%} Rename Chapter {%endblock%}
+{%block content%}
+<style>
+    ul *{
+        padding:1rem;
+        font-size:17px;
+    }
+</style>
+<h2> Searched Database: </h2>
+
+<h2> Quizzes </h2>
+{% if quizzes %}
+    <ul>
+    {% for quiz in quizzes %}
+            {% if chapter and subject and quiz.chapterid|int == chapter.chapterid|int and subject.subjectid|int == chapter.subjectid|int %}
+                <li>{{ quiz.naam }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% else %}
+    <p> No matching results...</p>
+{% endif %}
+<a href = '{{url_for("authorize.admin_dash")}}'> Go Back</a>
+{%endblock%}

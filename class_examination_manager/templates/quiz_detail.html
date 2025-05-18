@@ -1,0 +1,62 @@
+{%extends 'landing_page.html'%}
+{%block title%} View Quiz Page{%endblock%}
+{%block content%}
+<style>
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;  
+    }
+    
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    
+    .button-container {
+        width: auto; 
+        text-align: center;
+    }
+    
+    button {
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        max-width: 200px;  
+    }
+    a{
+        margin:1rem;
+    }
+</style>
+<h1>{{ quiz.naam }}</h1>
+<h2>Chapter: {{ quiz.chapter.naam }}</h2>
+{% if quiz.questions %}
+    <ul>
+        {% for question in quiz.questions %}
+        <li>
+            <form  action = '{{url_for("process.pop_question", quizid = quiz.quizid, qs_id = question.questionid)}}' method = 'post'>
+            <strong>{{ question.q_text }}</strong>
+            <ul>
+                <li>A) {{ question.opt_a }}</li>
+                <li>B) {{ question.opt_b }}</li>
+                <li>C) {{ question.opt_c }}</li>
+                <li>D) {{ question.opt_d }}</li>
+            </ul>
+            <p><strong>Correct Answer:</strong> {{ question.correct_opt }}</p>
+        <div class = 'button-container'>
+            <a href = "{{url_for('process.edit_page', qs_id = question.questionid)}}">Edit Question</a>
+        </div>
+        <div class = 'button-container'>
+            <button type= 'submit'>Delete Question</button>
+        </div>
+    </form>
+</li>
+{% endfor %}
+</ul>
+
+{% else %}
+    <p>Empty Quiz.</p>
+{% endif %}
+<a href="{{ url_for('process.view_quizzes', c_id = quiz.chapterid)}}">Back to Quizzes List</a>
+{%endblock%}

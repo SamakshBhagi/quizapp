@@ -1,0 +1,56 @@
+{% extends 'landing_page.html' %}
+{% block title %} Attempt Quiz {% endblock %}
+{% block content %}
+
+<style>
+    form{
+        text-align:left;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        padding:1rem;
+    }
+    label {
+        display: block;
+        padding: 10px;
+    }
+    button {
+        width:10vw;
+        padding: 10px;
+        background-color: blue;
+        color: white;
+        border: none;
+    }
+</style>
+
+<h2> Attempt {{ quiz.naam }} - ({{ quiz.chapter.naam }})</h2>
+
+<!-- Wrap all questions in a single form -->
+<form action="{{ url_for('process.score_calc', qz_id=quiz.quizid) }}" method="post">
+    {% for question in quiz.questions %}
+        <div class="question-block">
+            <p><strong>Q{{ loop.index }}: {{ question.q_text }}</strong></p>
+
+            <label>
+                <input type="radio" name="answers[{{ question.questionid }}]" value="A"> {{ question.opt_a }}
+            </label>
+
+            <label>
+                <input type="radio" name="answers[{{ question.questionid }}]" value="B"> {{ question.opt_b }}
+            </label>
+
+            <label>
+                <input type="radio" name="answers[{{ question.questionid }}]" value="C"> {{ question.opt_c }}
+            </label>
+
+            <label>
+                <input type="radio" name="answers[{{ question.questionid }}]" value="D"> {{ question.opt_d }}
+            </label>
+        </div>
+    {% endfor %}
+
+    <button type="submit">Submit Quiz</button>
+</form>
+
+{% endblock %}

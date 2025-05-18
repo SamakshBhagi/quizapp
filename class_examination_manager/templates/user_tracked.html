@@ -1,0 +1,11 @@
+{%extends 'landing_page.html'%}
+{%block title%}User Tracking {%endblock%}
+
+{%block content%}
+<p> Compare overall class average to {{user.naam}}'s average score..</p>
+<img src="data:image/png;base64,{{ img }}" alt="Quiz Score Chart">
+
+<div style = "margin:1rem">
+<a href = '{{url_for("authorize.admin_dash")}}'>Go Back </a>
+</div>
+{%endblock%}

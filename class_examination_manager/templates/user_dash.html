@@ -1,0 +1,36 @@
+{%extends 'landing_page.html'%}
+{%block title%} User Dashboard {%endblock%}
+
+{%block content%}
+<style>
+    p{
+        padding:0.5rem;
+    }
+</style>
+<h1>Welcome, {{user.naam}}! </h1>
+<p> Your Userid: {{user.userid}}</p>
+<p> What would you like to do today ? </p>
+
+<div class="quiz-container">
+{% for subjectid, chapters in s_list.items() %}
+    <h2>{{ s_names[subjectid] }}</h2>
+    
+    {% for chapter, quizzes in chapters.items() %}
+        <p>{{ chapter.naam }}</p>  
+        <ul>
+            {% for quiz in quizzes %}
+                <li>
+                    <form action="{{url_for('process.attempt_quiz', qz_id = quiz.quizid)}}" method="get">
+                        <button type="submit">
+                            {{ quiz.naam }}
+                        </button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+{% endfor %}
+</div>
+
+<a href = "{{url_for('authorize.logout' )}}"> Logout</a>
+{%endblock%}

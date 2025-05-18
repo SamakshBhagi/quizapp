@@ -1,0 +1,13 @@
+{%extends 'landing_page.html'%}
+{%block title%} Modify Subject {%endblock%}
+{%block content%}
+
+<form action = "{{url_for('process.edit_subject',  s_id = subject.subjectid)}}" method = 'post' >
+    <p>
+    Enter New name for subject '{{subject.naam}}':
+    </p>
+    <input type = 'text' name = 's_name'>
+    <button type = "submit">Rename</button>
+</form>    
+
+{%endblock%}

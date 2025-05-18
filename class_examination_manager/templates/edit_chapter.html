@@ -1,0 +1,11 @@
+{%extends 'landing_page.html'%}
+{%block title%} Modify Chapter {%endblock%}
+{%block content%}
+<form action = "{{url_for('process.edit_chapter',  c_id = chapter.chapterid)}}" method = 'post' >
+    <p>
+    Enter New name for chapter '{{chapter.naam}}':
+    </p>
+    <input type = 'text' name = 'c_name'>
+    <button type = "submit">Edit</button>
+</form>
+{%endblock%}    
